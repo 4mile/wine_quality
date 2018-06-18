@@ -12,7 +12,7 @@ RUN pip install six --upgrade --target="/usr/lib/python2.7/dist-packages"
 RUN jupyter nbextension install --py datalab.notebook --sys-prefix
 
 WORKDIR /notebooks
-COPY test.ipynb .
+COPY . .
 COPY jupyter_kernel_gateway_config.py /root/.jupyter/
 
 EXPOSE 8888
