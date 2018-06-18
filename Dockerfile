@@ -9,10 +9,11 @@ RUN pip install --upgrade h5py
 RUN pip uninstall --yes six
 RUN pip install six --upgrade --target="/usr/lib/python2.7/dist-packages"
 
-RUN jupyter nbextension install --py datalab.notebook --sys-prefix
+RUN jupyter nbextension install --log-level=WARN --py google.datalab.notebook
+RUN jupyter nbextension install --log-level=WARN --py datalab.notebook
 
 WORKDIR /notebooks
-COPY . .
+COPY *.ipynb ./
 COPY jupyter_kernel_gateway_config.py /root/.jupyter/
 
 EXPOSE 8888
