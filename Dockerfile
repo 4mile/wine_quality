@@ -24,6 +24,7 @@ ENV PROJECT_ID=looker-action-hub
 WORKDIR /notebooks
 COPY *.ipynb ./
 COPY jupyter_kernel_gateway_config.py /root/.jupyter/
+RUN mkdir -p /root/.config/gcloud && echo "{\"project_id\":\"$PROJECT_ID\"}" > /root/.config/gcloud/config.json
 
 EXPOSE 8888
 CMD ["jupyter", "kernelgateway"]
