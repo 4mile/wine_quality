@@ -9,6 +9,8 @@ RUN pip install --upgrade h5py
 RUN pip uninstall --yes six
 RUN pip install six --upgrade --target="/usr/lib/python2.7/dist-packages"
 
+# '%load_ext' is still required in the notebooks. I've tried to load the extensions automatically
+# through jupyter_notebook_config.py but get lots of errors.
 RUN jupyter nbextension install --log-level=WARN --py google.datalab.notebook
 RUN jupyter nbextension install --log-level=WARN --py datalab.notebook
 
