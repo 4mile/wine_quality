@@ -14,6 +14,13 @@ RUN pip install six --upgrade --target="/usr/lib/python2.7/dist-packages"
 RUN jupyter nbextension install --log-level=WARN --py google.datalab.notebook
 RUN jupyter nbextension install --log-level=WARN --py datalab.notebook
 
+# You must provide a credentials file. See https://cloud.google.com/bigquery/docs/reference/libraries
+COPY service_key.json /root/service_key.json
+ENV GOOGLE_APPLICATION_CREDENTIALS=/root/service_key.json
+
+# Change this project ID to your Google Cloud project ID.
+ENV PROJECT_ID=looker-action-hub
+
 WORKDIR /notebooks
 COPY *.ipynb ./
 COPY jupyter_kernel_gateway_config.py /root/.jupyter/
